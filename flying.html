@@ -12,11 +12,12 @@
   </head>
   <body>
     <script>
-      const URL = new URLSearchParams(window.location.search).get("url");
-      const generateInterval = 500;
-      const opacityInterval = 5000;
-      const moveInterval = 200;
-      const width = "5%";
+      const params = new URLSearchParams(window.location.search);
+      const URL = params.get("url");
+      const generateInterval = parseInt(params.get("generateInterval"));
+      const opacityInterval = parseInt(params.get("opacityInterval"));
+      const moveInterval = parseInt(params.get("moveInterval"));
+      const width = params.get("width");
       const moveTime = moveInterval * 100;
 
       const getRandomIntInclusive = (min, max) => {
