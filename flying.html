@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>會飄ㄉ東西們</title>
+    <style>
+      body {
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const URL = new URLSearchParams(window.location.search).get("url");
+      const generateInterval = 500;
+      const opacityInterval = 5000;
+      const moveInterval = 200;
+      const width = "5%";
+      const moveTime = moveInterval * 100;
+
+      const getRandomIntInclusive = (min, max) => {
+        const randomBuffer = new Uint32Array(1);
+        window.crypto.getRandomValues(randomBuffer);
+        const randomNumber = randomBuffer[0] / (0xffffffff + 1);
+        return Math.floor(min + randomNumber * (max - min + 1));
+      };
+
+      setInterval(() => {
+        const image = new Image();
+        const direction = getRandomIntInclusive(-1, 1) * 0.1;
+
+        image.src = URL;
+        image.style = `
+    position: fixed;
+    top: 100%;
+    left: ${getRandomIntInclusive(0, 100)}%;
+    width: ${width};
+    height: auto;
+    transition: left 1s, top ${moveTime / 1000}s, opacity ${
+          opacityInterval / 1000
+        }s;
+  `;
+
+        document.body.appendChild(image);
+
+        setTimeout(() => (image.style.top = "-100%"), 1000);
+
+        const moveLoop = setInterval(() => {
+          image.style.left = `${
+            parseFloat(image.style.left) + parseFloat(direction)
+          }%`;
+        }, moveInterval);
+        const opacityLoop = setInterval(() => {
+          image.style.opacity = getRandomIntInclusive(0, 100) * 0.01;
+        }, opacityInterval);
+
+        setTimeout(() => {
+          document.body.removeChild(image);
+          clearInterval(moveLoop);
+          clearInterval(opacityLoop);
+        }, moveTime * 1.5);
+      }, generateInterval);
+    </script>
+  </body>
+</html>
