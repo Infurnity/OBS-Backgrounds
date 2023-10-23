@@ -83,10 +83,13 @@
         z-index: 2;
         left: -100%;
         top: 512px;
+        height:384px;
         color: white;
         animation: name 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
         animation-delay: calc(var(--delay) + 1.3s);
         font-weight: bold;
+        display:flex;
+        align-items:center;
       }
       @keyframes name {
         0% {
@@ -106,7 +109,9 @@
         <div>新毛發表</div>
         <div id="englishSection">Fursuit Debut</div>
       </div>
-      <pre id="name">山松</pre>
+      <div id="nameBlock">
+        <pre id="name">山松</pre>
+      </div>
     </div>
 
     <script>
