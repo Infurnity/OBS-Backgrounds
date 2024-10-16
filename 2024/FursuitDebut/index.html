@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>新毛發表 Animate</title>
+    <style>
+      * {
+        --delay: 0s;
+      }
+      * {
+        font-family: Noto Sans TC, SF Pro TC, SF Pro Text, SF Pro Icons,
+          PingFang TC, Helvetica Neue, Helvetica, Arial, Microsoft JhengHei,
+          wf_SegoeUI, Segoe UI, Segoe, Segoe WP, Tahoma, Verdana, Ubuntu,
+          Bitstream Vera Sans, DejaVu Sans, 微軟正黑體, LiHei Pro,
+          WenQuanYi Micro Hei, Droid Sans Fallback, AR PL UMing TW, Roboto,
+          Hiragino Maru Gothic ProN, メイリオ, ヒラギノ丸ゴ ProN W4, Meiryo,
+          Droid Sans, sans-serif;
+      }
+      body {
+        background: transparent;
+        margin: 0;
+      }
+      #panel {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        animation: panel 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        animation-delay: var(--delay);
+      }
+      @keyframes panel {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: -20%;
+        }
+      }
+      #logo {
+        position: fixed;
+        top: 64px;
+        width: 384px;
+        height: auto;
+        left: -100%;
+        animation: logo 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        animation-delay: calc(var(--delay) + 0.5s);
+        z-index: 2;
+      }
+      @keyframes logo {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 128px;
+        }
+      }
+      #section {
+        position: fixed;
+        font-size: 4rem;
+        z-index: 2;
+        left: -100%;
+        top: 384px;
+        color: #333;
+        animation: section 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        line-height: 5rem;
+        animation-delay: calc(var(--delay) + 1s);
+        font-weight: bold;
+      }
+      #englishSection {
+        font-size: 2rem;
+      }
+      @keyframes section {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 128px;
+        }
+      }
+      #name {
+        position: fixed;
+        font-size: 8rem;
+        z-index: 2;
+        left: -100%;
+        top: 448px;
+        height: 384px;
+        color: #333;
+        animation: name 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        animation-delay: calc(var(--delay) + 1.3s);
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
+      #studio {
+        position: fixed;
+        font-size: 4rem;
+        z-index: 2;
+        left: -100%;
+        top: 640px;
+        height: 384px;
+        color: #333;
+        animation: name 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        animation-delay: calc(var(--delay) + 1.3s);
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+      }
+      @keyframes name {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 128px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <img id="logo" src="logo.webp" />
+      <div id="section">
+        <div>新毛發表</div>
+        <div id="englishSection">Fursuit Debut</div>
+      </div>
+      <div id="nameBlock">
+        <pre id="name">山松</pre>
+        <pre id="studio">傘松智毛工作室</pre>
+      </div>
+    </div>
+
+    <script>
+      let query = new URLSearchParams(window.location.search);
+
+      let name = query.get("name");
+      let nameSize = query.get("nameSize");
+      let studio = query.get("studio");
+      let studioSize = query.get("studioSize");
+
+      if (name) {
+        document.getElementById("name").innerText = decodeURIComponent(
+          name
+        ).replace(/\\n/g, "\n");
+      }
+      if (studio) {
+        document.getElementById("studio").innerText = decodeURIComponent(
+          studio
+        ).replace(/\\n/g, "\n");
+      }
+      if (nameSize) {
+        document.getElementById("name").style.fontSize = nameSize;
+      }
+      if (studioSize) {
+        document.getElementById("studio").style.fontSize = studioSize;
+      }
+    </script>
+  </body>
+</html>

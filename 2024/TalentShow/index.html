@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>表演囉 \owo/</title>
+    <style>
+      * {
+        --delay: 2s;
+      }
+      * {
+        font-family: Noto Sans TC, SF Pro TC, SF Pro Text, SF Pro Icons,
+          PingFang TC, Helvetica Neue, Helvetica, Arial, Microsoft JhengHei,
+          wf_SegoeUI, Segoe UI, Segoe, Segoe WP, Tahoma, Verdana, Ubuntu,
+          Bitstream Vera Sans, DejaVu Sans, 微軟正黑體, LiHei Pro,
+          WenQuanYi Micro Hei, Droid Sans Fallback, AR PL UMing TW, Roboto,
+          Hiragino Maru Gothic ProN, メイリオ, ヒラギノ丸ゴ ProN W4, Meiryo,
+          Droid Sans, sans-serif;
+      }
+      body {
+        background: transparent;
+        margin: 0;
+      }
+      #screen {
+        width: 1920px;
+        height: 1080px;
+
+        position: fixed;
+        top: 100%;
+        left: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        animation: screen 1s cubic-bezier(0.83, 0, 0.24, 0.92) forwards;
+        animation-delay: var(--delay);
+      }
+      @keyframes screen {
+        0% {
+          top: 100%;
+        }
+        100% {
+          top: 0;
+        }
+      }
+      #lantern {
+        width: 768px;
+        height: auto;
+
+        animation: lantern 8s infinite;
+        animation-delay: calc(var(--delay)+2s);
+      }
+      @keyframes lantern {
+        25% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.8;
+        }
+
+        75% {
+          opacity: 1;
+        }
+      }
+      #title {
+        position: absolute;
+        font-size: 6rem;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        line-height: 6rem;
+        height: 640px;
+        filter: drop-shadow(0px 0px 16px rgba(0, 0, 0, 0.3));
+        -webkit-filter: drop-shadow(0px 0px 16px rgba(0, 0, 0, 0.3));
+      }
+      #title > #logo > img {
+        width: auto;
+        height: 96px;
+        transform: translateY(-2160px);
+        animation: logo 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        animation-delay: calc(var(--delay) + 1s);
+        margin-bottom: 64px;
+      }
+      @keyframes logo {
+        0% {
+          transform: translateY(-1080px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+      #title > #english {
+        font-size: 3rem;
+      }
+      #title > #chinese,
+      #title > #english {
+        transform: scale(0);
+        animation: title 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        animation-delay: calc(var(--delay) + 1.5s);
+      }
+      @keyframes title {
+        0% {
+          transform: scale(0);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      #title > #name {
+        height: 256px;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 6rem;
+        transform: translateY(1080px);
+        animation: name 1s cubic-bezier(0.82, 0.13, 0, 0.99) forwards;
+        animation-delay: calc(var(--delay) + 1.3s);
+        line-height: unset;
+      }
+      @keyframes name {
+        0% {
+          transform: translateY(1080px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="screen">
+      <img id="lantern" src="lantern.png" />
+      <div id="title">
+        <div id="logo">
+          <img src="logo.webp" />
+        </div>
+        <div id="chinese">無限展演秀</div>
+        <div id="english">Furry Talent Show</div>
+
+        <div id="name">AAAA</div>
+      </div>
+    </div>
+
+    <script>
+      let query = new URLSearchParams(window.location.search);
+
+      let name = query.get("name");
+      let size = query.get("size");
+      let lineHeight = query.get("lineHeight");
+
+      if (name) {
+        document.getElementById("name").innerText = decodeURIComponent(
+          name
+        ).replace(/\\n/g, "\n");
+      }
+      if (size) {
+        document.getElementById("name").style.fontSize = size;
+      }
+      if (lineHeight) {
+        document.getElementById("name").style.lineHeight = lineHeight;
+      }
+    </script>
+  </body>
+</html>
