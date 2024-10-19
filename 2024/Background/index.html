@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html {
+            background: url("background.webp");
+            background-size: 85%;
+			background-position: 0px -20px;
+            transition: 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let params = (new URLSearchParams(location.search));
+        let pixels = parseInt(params.get("pixels") ?? "1");
+        let ms = parseInt(params.get("ms") ?? "100");
+
+        let x = 0;
+        setInterval(_ => {
+            document.body.parentElement.style.backgroundPositionX = x + "px";
+            x = x + pixels;
+        }, ms)
+    </script>
+</body>
+
+</html>
